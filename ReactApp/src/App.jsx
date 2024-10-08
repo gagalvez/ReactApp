@@ -1,35 +1,80 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState } from 'react';
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [form, setForm] = useState({
+    name: "Nombre",
+    contact: "Contacto",
+    LinkdIn: "LinkdIn"
+  });
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div id="app">
+      <InputForm form={form} setForm={setForm} />
+      <Form form={form} />
+    </div>
+  );
+}
+
+function InputForm({ form, setForm }) {
+  return (
+    <div className='inputForm'>
+      Nombre completo:<input
+        value={form.name}
+        onChange={e => {
+          setForm({
+            ...form,
+            name: e.target.value
+          });
+        }}
+        placeholder='Ingrese su nombre'
+      />
+      Contacto:<input
+        value={form.contact}
+        onChange={e => {
+          setForm({
+            ...form,
+            contact: e.target.value
+          });
+        }}
+        placeholder='Ingrese su contacto'
+      />
+      Email:<input
+        value={form.LinkdIn}
+        onChange={e => {
+          setForm({
+            ...form,
+            LinkdIn: e.target.value
+          });
+        }}
+        placeholder='Ingrese su LinkdIn'
+      />
+      LinkdIn:<input
+        value={form.LinkdIn}
+        onChange={e => {
+          setForm({
+            ...form,
+            LinkdIn: e.target.value
+          });
+        }}
+        placeholder='Ingrese su LinkdIn'
+      />
+    </div> 
+  );
+}
+
+
+function Form({ form }) {
+  return (
+    <div className='form'>
+      <h2>Contacto</h2>
+      <hr />
+      <p>{form.name}</p> 
+      <p>{form.contact}</p> 
+      <p>{form.LinkdIn}</p> 
+      <hr />
+    </div> 
+  );
 }
 
 export default App
